@@ -1,8 +1,9 @@
 <?php
 $this_date = empty($_REQUEST[d])? date("Y-m-d") : $_REQUEST[d];
+$this_day = date("j", strtotime($this_date));
 $this_month = date("Y-m-01", strtotime($this_date));
-$next_month = date("Y-m-d", strtotime($this_month.  "+ 1 months"));
-$prev_month = date("Y-m-d", strtotime($this_month.  "- 1 months"));
+$next_month = date("Y-m-d", strtotime($this_date.  "+ 1 months"));
+$prev_month = date("Y-m-d", strtotime($this_date.  "- 1 months"));
 $dayInWeek = date('w', strtotime($this_month));
 $lastDateMonth = date("t", strtotime($this_month));
 

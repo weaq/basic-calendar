@@ -98,6 +98,11 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
     color: DimGray;
   }
 
+  .grid-calendar .grid-cell.this-date {
+    background-color: LightSeaGreen;
+    color: white;
+  }
+
   </style>
 </head>
 
@@ -105,10 +110,10 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
   <div class="container">
   <div class="row text-center">
     <div class="col-2 display-4"><a href="<?php echo "?d=" . $prev_month; ?>">&#10094;</a></div>
-    <div class="col-8 display-3">
+    <div class="col-8 h2">
         <?php echo $monthThai[date("n", strtotime($this_month))]; ?>
         <br>
-        <span class="display-4">
+        <span class="h2">
         <?php echo date("Y", strtotime($this_month)); ?>
         </span>
     </div>
@@ -131,7 +136,12 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
           $tmp_style = " over-month";
         } else {
           $tmp_date = $i;
-          $tmp_style = "";
+
+          if ($i == date("j", strtotime($this_date)) ) {
+            $tmp_style = " this-date";
+          } else {
+            $tmp_style = "";
+          }
         }
 
         // close div
@@ -146,6 +156,7 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
         echo '<div class="col-xs-1 grid-cell ' . $tmp_style . '"><div><div><span>' . $tmp_date . '</span></div></div></div>';
         $ii++;
       }
+      // date at next month
       $tmp_fist_next_date = 7 - ($ii % 7);
       if ($tmp_fist_next_date < 7) {
         for ($i=1;$i<=$tmp_fist_next_date;$i++) {

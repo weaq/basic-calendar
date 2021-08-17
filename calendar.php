@@ -154,7 +154,9 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
           echo '<div class="row calendar-week">';
         }
 
-        echo '<div class="col-xs-1 grid-cell ' . $tmp_style . '"><div><div><span>' . $tmp_date . '</span></div></div></div>';
+        echo '<div class="col-xs-1 grid-cell ' . $tmp_style . '"><div><div>' .
+        '<a href="?d="><div class="text-center">' . $tmp_date . '<br>abc</div></a>' .
+        '</div></div></div>';
         $ii++;
       }
       // date at next month

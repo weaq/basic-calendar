@@ -104,6 +104,11 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
     color: white;
   }
 
+  .text-detail {
+    color: #a6a6a6;
+    font-size: 0.8em;
+  }
+
   </style>
 </head>
 
@@ -135,8 +140,12 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
         if ($i<=0) {
           $tmp_date = $lastPrevMonth + $i;
           $tmp_style = " over-month";
+          $i_d = $i - 1;
+          $tmp_link_date = date("Y-m-d", strtotime($this_month . $i_d . " days"));
+
         } else {
           $tmp_date = $i;
+          $tmp_link_date = date("Y-m-", strtotime($this_month)) . str_pad($i, 2, "0", STR_PAD_LEFT);
 
           if ($i == date("j", strtotime($this_date)) ) {
             $tmp_style = " this-date";
@@ -153,18 +162,22 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
         if ($ii % 7 == 0) {
           echo '<div class="row calendar-week">';
         }
-
         echo '<div class="col-xs-1 grid-cell ' . $tmp_style . '"><div><div>' .
-        '<a href="?d="><div class="text-center">' . $tmp_date . '<br>abc</div></a>' .
+        '<a href="?d=' . $tmp_link_date . '"><div class="text-center">' . $tmp_date . '<div class="text-detail">' . $tmp_link_date . '</div></div></a>' .
         '</div></div></div>';
         $ii++;
       }
+
       // date at next month
       $tmp_fist_next_date = 7 - ($ii % 7);
       if ($tmp_fist_next_date < 7) {
         for ($i=1;$i<=$tmp_fist_next_date;$i++) {
           $tmp_date = $i;
-          echo '<div class="col-xs-1 grid-cell over-month"><div><div><span>' . $tmp_date . '</span></div></div></div>';
+          $tmp_link_date = date("Y-m-", strtotime($this_month)) . str_pad($i, 2, "0", STR_PAD_LEFT);
+          //echo '<div class="col-xs-1 grid-cell over-month"><div><div><span>' . $tmp_date . '</span></div></div></div>';
+          echo '<div class="col-xs-1 grid-cell over-month ' . $tmp_style . '"><div><div>' .
+          '<a href="?d=' . $tmp_link_date . '"><div class="text-center">' . $tmp_date . '<div class="text-detail">' . $tmp_link_date . '</div></div></a>' .
+          '</div></div></div>';
         }
       }
       echo '</div>';

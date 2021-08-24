@@ -100,7 +100,7 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
   }
 
   .grid-calendar .grid-cell.this-date {
-    background-color: LightSeaGreen;
+    background-color: Lavender;
     color: white;
   }
 

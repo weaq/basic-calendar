@@ -24,92 +24,8 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <style>
-  * {
-    box-sizing: border-box;
-  }
+  <link rel="stylesheet" type="text/css" href="calendar.css">
 
-  *:before {
-    box-sizing: border-box;
-  }
-
-  *:after {
-    box-sizing: border-box;
-  }
-
-  .container {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 1em;
-  }
-
-  .row:before {
-    display: table;
-    content: " ";
-  }
-
-  .grid-calendar {
-    min-width: 320px;
-  }
-  .grid-calendar .row {
-    margin: 0;
-  }
-  .grid-calendar .calendar-week .grid-cell {
-    background-color: #f6f6f6;
-    border: 1px solid #fff;
-  }
-  .grid-calendar .calendar-week-header .grid-cell > div > div {
-    padding-bottom: 10px;
-    height: auto;
-  }
-  .grid-calendar .grid-cell {
-    display: inline-block;
-    float: left;
-    min-height: 1px;
-    padding: 0;
-    position: relative;
-    width: 14.2857142857%;
-  }
-  .grid-calendar .grid-cell.over-month {
-    color: #a6a6a6;
-    font-size: 0.8em;
-  }
-  .grid-calendar .grid-cell.next-month {
-    background-color: #e1e1e1;
-  }
-  .grid-calendar .grid-cell > div {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  .grid-calendar .grid-cell > div > div {
-    height: 0;
-    padding: 10% 0 60% 0;
-    font-size: 1.5em;
-  }
-
-  a:link, a:visited {
-    text-decoration: none;
-    color: LightGray;
-  }
-
-  a:hover, a:active {
-    text-decoration: none;
-    color: DimGray;
-  }
-
-  .grid-calendar .grid-cell.this-date {
-    background-color: Lavender;
-    color: white;
-  }
-
-  .text-detail {
-    color: #a6a6a6;
-    font-size: 0.8em;
-  }
-
-  </style>
 </head>
 
 <body>
@@ -117,10 +33,9 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
   <div class="row text-center">
     <div class="col-2 display-4"><a href="<?php echo "?d=" . $prev_month; ?>">&#10094;</a></div>
     <div class="col-8 h2">
-        <?php echo $monthThai[date("n", strtotime($this_month))]; ?>
-        <br>
-        <span class="h2">
-        <?php echo date("Y", strtotime($this_month)); ?>
+      <span class="h2">
+        <?php echo $monthThai[date("n", strtotime($this_month))]; ?> &nbsp;
+        <?php echo date("Y", strtotime($this_month)) + 543; ?>
         </span>
     </div>
     <div class="col-2 display-4"><a href="<?php echo "?d=" . $next_month; ?>">&#10095;</a></div>
@@ -163,7 +78,7 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
           echo '<div class="row calendar-week">';
         }
         echo '<div class="col-xs-1 grid-cell ' . $tmp_style . '"><div><div>' .
-        '<a href="?d=' . $tmp_link_date . '"><div class="text-center">' . $tmp_date . '<div class="text-detail">' . $tmp_link_date . '</div></div></a>' .
+        '<a href="?d=' . $tmp_link_date . '" class="' . $tmp_style . '"><div class="text-center">' . $tmp_date . '<div class="text-detail">' . $tmp_link_date . '</div></div></a>' .
         '</div></div></div>';
         $ii++;
       }
@@ -176,7 +91,7 @@ $monthTh = [null,'ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','�
           $tmp_link_date = date("Y-m-", strtotime($this_month)) . str_pad($i, 2, "0", STR_PAD_LEFT);
           //echo '<div class="col-xs-1 grid-cell over-month"><div><div><span>' . $tmp_date . '</span></div></div></div>';
           echo '<div class="col-xs-1 grid-cell over-month ' . $tmp_style . '"><div><div>' .
-          '<a href="?d=' . $tmp_link_date . '"><div class="text-center">' . $tmp_date . '<div class="text-detail">' . $tmp_link_date . '</div></div></a>' .
+          '<a href="?d=' . $tmp_link_date . '" class="over-month"><div class="text-center">' . $tmp_date . '<div class="text-detail">' . $tmp_link_date . '</div></div></a>' .
           '</div></div></div>';
         }
       }
